@@ -11,7 +11,7 @@ var configAuth = require('../../config/auth'),
     handlebars.registerPartial('connections', connTemplate), 
     handlebars.registerPartial('userMini', miniTemplate);
     var ses = require('nodemailer-ses-transport'),
-	Account = require('./account'),
+	Account = require('./user'),
 	User = require('./index');
     var nodemailerMailgun;
     if (configAuth.mailer.amazon) 

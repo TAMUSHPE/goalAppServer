@@ -1,51 +1,51 @@
-var Group = require('./group');
+var Organization = require('./organization');
 module.exports = {
 	create: function (req, cb) {
-	    var newGroup = new Group();
-        newGroup.name = req.body.name;
-        newGroup.desc = req.body.desc;
-        newGroup.coop = req.body.coop;
-        newGroup.save(function(err, newGroup) {
+	    var newOrganization = new Organization();
+        newOrganization.name = req.body.name;
+        newOrganization.desc = req.body.desc;
+        newOrganization.coop = req.body.coop;
+        newOrganization.save(function(err, newOrganization) {
             if(err) {
                 cb(err);
             }
-            cb(null, newGroup);
+            cb(null, newOrganization);
         });
 	}, //close create
 	get: function (id, cb) {
-		Group.findById(id, function(err, group) {
+		Organization.findById(id, function(err, organization) {
             if(err) {
                 cb(err);
             }
-          cb(null, group);
+          cb(null, organization);
         });
 	},
 	all: function (cb) {
-		Group.find(function(err, groups) {
+		Organization.find(function(err, organizations) {
             if(err) {
                 cb(err);
             }
-          cb(null, groups);
+          cb(null, organizations);
         });
 	},
 	put: function (req, cb) {
-		Group.findById(req.params.id, function(err, group) {
+		Organization.findById(req.params.id, function(err, organization) {
             if(err) {
                 cb(err);
             }
-	      	group.name = req.body.name;
-	        group.desc = req.body.desc;
-	        group.coop = req.body.coop;
-            group.save(function(err, group) {
+	      	organization.name = req.body.name;
+	        organization.desc = req.body.desc;
+	        organization.coop = req.body.coop;
+            organization.save(function(err, organization) {
                 if(err) {
                     cb(err);
                 }
-                cb(null,group);
+                cb(null,organization);
             });
         });
 	},
 	delete: function (id, cb) {
-		  Group.remove({
+		  Organization.remove({
             _id: id
         }, function(err) {
             if(err) {

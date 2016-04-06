@@ -1,4 +1,4 @@
-var User = require('./account');
+var User = require('./user');
 var Image = require('../images/index');
 var debug = require('debug')('accounts');
 var fields= ["email","bio","Oldimage","following", "followers"]; 

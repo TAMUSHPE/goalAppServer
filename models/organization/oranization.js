@@ -1,19 +1,21 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Group = new Schema({
+var Organization = new Schema({
     name: String,
     desc: String,
-    player_inv: [{ 
+    private: {type:Boolean , default: false},
+    admins: [{ 
 		type: mongoose.Schema.Types.ObjectId, 
-		ref: 'Account'}],
-    game_inv: [{ 
-     	type: mongoose.Schema.Types.ObjectId, 
-     	ref: 'Game'}],
+		ref: 'User'}],
+    members: [{ 
+		type: mongoose.Schema.Types.ObjectId, 
+		ref: 'User'}],
+	hash: {type:String, required:true},
    	created_at: Date,
   	updated_at: Date
 });
 //on every save, add the date
-Group.pre('save', function(next){
+Organization.pre('save', function(next){
 	//get the current date
 	var currentDate = new Date();
 	//change the udpated_at field to current date
@@ -25,4 +27,4 @@ Group.pre('save', function(next){
 
 	next();
 });
-module.exports = mongoose.model('Group', Group);
+module.exports = mongoose.model('Organization', Organization);
