@@ -2,11 +2,11 @@ var LocalStrategy = require ('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var configAuth = require('./auth');
-var User = require('./../models/accounts/account'),
+var User = require('./../models/users/user'),
     Image = require('./../models/images/image'),
     nodemailer = require("nodemailer"),
     hbsMailer = require('nodemailer-express-handlebars'),
-    Account = require('./../models/accounts/account'),
+    Account = require('./../models/users/user'),
     ses = require('nodemailer-ses-transport');
 
 var nodemailerMailgun = nodemailer.createTransport(ses({

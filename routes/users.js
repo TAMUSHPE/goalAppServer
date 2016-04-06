@@ -1,12 +1,11 @@
 var express = require('express');
 var passport = require('passport');
-var Account = require('../models/accounts/account');
-var User = require('../models/accounts/index');
+var Account = require('../models/users/user');
+var User = require('../models/users/index');
 var router = express.Router();
-var Group = require('../models/groups/index');
 var multer = require('multer');
 var configAuth = require('../config/auth');
-var email = require('../models/accounts/email'),
+var email = require('../models/users/email'),
     handlebars = require('hbs'),
     middleware = require('../middleware/authentication');
 
