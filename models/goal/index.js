@@ -1,11 +1,13 @@
 var Goal = require('./goal');
 module.exports = {
 	create: function (req, cb) {
-	    var newGoal = new Organization();
+	    var newGoal = new Goal();
         newGoal.name = req.body.name;
         newGoal.desc = req.body.desc;
-        newGoal.coop = req.body.coop;
-        newGoal.save(function(err, newOrganization) {
+        newGoal.completed = req.body.completed;
+        newGoal.assigned = req.body.assigned;
+        newGoal.creator = req.body.creator;
+        newGoal.save(function(err, newGoal) {
             if(err) {
                 cb(err);
             }
@@ -17,7 +19,7 @@ module.exports = {
             if(err) {
                 cb(err);
             }
-          cb(null, Goal);
+          cb(null, goal);
         });
 	},
 	all: function (cb) {
@@ -25,7 +27,7 @@ module.exports = {
             if(err) {
                 cb(err);
             }
-          cb(null, Goals);
+          cb(null, goals);
         });
 	},
 	put: function (req, cb) {
@@ -33,14 +35,14 @@ module.exports = {
             if(err) {
                 cb(err);
             }
-	      	Goal.name = req.body.name;
-	        Goal.desc = req.body.desc;
-	        Goal.coop = req.body.coop;
-            Goal.save(function(err, goal) {
+	      	goal.name = req.body.name;
+	        goal.desc = req.body.desc;
+	        goal.coop = req.body.coop;
+            goal.save(function(err, goal) {
                 if(err) {
                     cb(err);
                 }
-                cb(null,Goal);
+                cb(null,goal);
             });
         });
 	},

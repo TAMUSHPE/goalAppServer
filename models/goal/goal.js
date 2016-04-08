@@ -6,13 +6,12 @@ var Goal = new Schema({
     completed: Boolean,
     assigned: { 
 		type: mongoose.Schema.Types.ObjectId, 
-		ref: 'User'}
+		ref: 'Roel'}
     creator: { 
 		type: mongoose.Schema.Types.ObjectId, 
 		ref: 'User'},
-    hash: {type:String, required:true},
     created_at: Date,
-    pdated_at: Date
+    updated_at: Date
 });
 //on every save, add the date
 Goal.pre('save', function(next){
