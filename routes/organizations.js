@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Organization = require('../models/organization/index');
-  , fs = require('fs')
-  , middleware = require('../middleware/authentication')
 
 router.route('/organizations')
     .get(function(req, res) {
