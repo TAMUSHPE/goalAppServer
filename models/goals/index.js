@@ -4,11 +4,7 @@ var fields = ["name","desc","completed","assigned","creator"];
 module.exports = {
 	create: function (req, cb) {
 	    var newGoal = new Goal();
-        newGoal.name = req.body.name;
-        newGoal.desc = req.body.desc;
-        newGoal.completed = req.body.completed;
-        newGoal.assigned = req.body.assigned;
-        newGoal.creator = req.body.creator;
+        Helper.retrieveFields(fields,newGoal,req.body);
         newGoal.save(function(err, newGoal) {
             if(err) {
                 cb(err);
@@ -37,9 +33,7 @@ module.exports = {
             if(err) {
                 cb(err);
             }
-	      	goal.name = req.body.name;
-	        goal.desc = req.body.desc;
-	        goal.coop = req.body.coop;
+        Helper.retrieveFields(fields,goal,req.body);
             goal.save(function(err, goal) {
                 if(err) {
                     cb(err);
