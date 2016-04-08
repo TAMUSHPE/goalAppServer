@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var Goal = new Schema({
     name: String,
     desc: String,
-    completed: {type:Boolean, default: false},
+    completed: {type:Boolean, required:true,default: false},
     assigned: String,
     creator: { 
 		type: mongoose.Schema.Types.ObjectId, 

@@ -3,14 +3,15 @@ var Schema = mongoose.Schema;
 var Organization = new Schema({
     name: String,
     desc: String,
+    role: [{type:String}],
     private: {type:Boolean , default: false},
-    admins: [{ 
+    admins: [{user:{ 
 		type: mongoose.Schema.Types.ObjectId, 
-		ref: 'User'}],
-    members: [{ 
+		ref: 'User'},role: String}],
+    members: [{user:{ 
 		type: mongoose.Schema.Types.ObjectId, 
-		ref: 'User'}],
-	hash: {type:String, required:true},
+		ref: 'User'},role: String}],
+	hash_key: {type:String, required:true},
    	created_at: Date,
   	updated_at: Date
 });
