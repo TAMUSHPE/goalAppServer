@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var Goal = new Schema({
     name: String,
     desc: String,
-    completed: Boolean,
+    completed: {type:Boolean, default: false},
     assigned: { 
 		type: mongoose.Schema.Types.ObjectId, 
 		ref: 'Roel'}
