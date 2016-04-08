@@ -2,7 +2,7 @@ var Organization = require('./organization');
 var Helper = require('../../lib/incomingFilterData');
 var underscore = require("underscore");
 var async = require("async");
-var fields = ["name","desc","private","admins","members","hash"];
+var fields = ["name","desc","private","admins","members","goals"];
 var HASH_KEY_LENGTH = 10;
 
 /**

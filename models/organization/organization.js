@@ -11,6 +11,9 @@ var Organization = new Schema({
     members: [{user:{ 
 		type: mongoose.Schema.Types.ObjectId, 
 		ref: 'User'},role: String}],
+    goals: [{ 
+		type: mongoose.Schema.Types.ObjectId, 
+		ref: 'Role'}],
 	hash_key: {type:String, required:true},
    	created_at: Date,
   	updated_at: Date
