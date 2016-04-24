@@ -1,7 +1,7 @@
 var User = require('./user');
-var Image = require('../images/index');
+var Helper = require('../../lib/incomingFilterData');
 var debug = require('debug')('accounts');
-var fields= ["email","username"]; 
+var fields= ["email","name"]; 
 var mongoose = require('mongoose');
 module.exports = {
 	/*
@@ -10,12 +10,15 @@ module.exports = {
 	*/
 	create: function (params, cb) {
 		var newUser = new User();
-		Helper.retrieveFeilds(fields,newUser,params);
-		newUser.save(function(err,newUser){
+		Helper.retrieveFields(fields,newUser,params);
+		newUser.facebook.id = params.id;
+		newUser.facebook.token = params.token;
+		newUser.image = "http://graph.facebook.com/" + params.id + "/picture?type=square"
+		newUser.save(function(err,user){
 			if(err){
 			  cb(err);
 			}
-			cb(null,newUser);
+			cb(null,user);
 		});
 
 	}, //close create
@@ -57,7 +60,7 @@ module.exports = {
 			if(err){
 			cb(err);
 			}
-			cb(null,goal);
+			cb(null,user);
 		});
           });
 	},
