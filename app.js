@@ -55,9 +55,6 @@ app.use('/', routes);
 app.use('/api', images);
 app.use('/api',organizations);
 app.use('/api',goals);
-//adds local, facebook,
-//adds local, facebook,
-require('./config/passport')(passport);
 
 //mongoose
 mongoose.connect(configAuth.db);
