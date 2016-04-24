@@ -363,8 +363,9 @@ router.route('/test')
 		    if(configAuth.facebookAuth.clientID === response.data.app_id && 
 		     token.userID === response.data.user_id)
 		     {
-			request('https://graph.facebook.com/me?fields=email&access_token='+token.accessToken, function(err,response,body){
-			       var user data = JSON.parse(body);
+			request('https://graph.facebook.com/me?fields=name,email&access_token='+token.accessToken, function(err,response,body){
+			       var userData = JSON.parse(body);
+			       console.log(userData);
 			       res.json("sucess");
 			});
 
