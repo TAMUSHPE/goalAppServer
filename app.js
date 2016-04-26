@@ -55,6 +55,7 @@ app.use('/', routes);
 app.use('/api', images);
 app.use('/api',organizations);
 app.use('/api',goals);
+require('./config/passport')(passport);
 
 //mongoose
 mongoose.connect(configAuth.db);

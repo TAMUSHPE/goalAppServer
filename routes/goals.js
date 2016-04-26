@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Goal = require('../models/goals/index');
+var passport = require('passport');
 
 router.route('/goals')
     .get(function(req, res) {
@@ -44,5 +45,8 @@ router.route('/goals/:id')
             res.json('Deleted!');
         });
     });
-
+router.route('/test')
+	.get(passport.authenticate('bearer', { session: false }),function(req,res){
+  res.json("sucess");
+});
 module.exports = router;
