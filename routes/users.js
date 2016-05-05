@@ -7,40 +7,20 @@ var configAuth = require('../config/auth'),
     request = require("request");
 var email = require('../models/users/email'),
     handlebars = require('hbs'),
-    middleware = require('../middleware/authentication');
+    middleware = require('../middleware/authentication'),
+    authHelper = require('../lib/helper.js');
 
-
-router.route('/register')
+router.route('/login')
     //takes facebook sdk token checks if its real
     //if so then retrieves user email and id and stores token,email,id
     .post(function(req,res){
       var token = JSON.parse(req.body.user);
-      var url = "https://graph.facebook.com/debug_token?"+
-     "input_token="+token.accessToken+
-     "&access_token="+configAuth.facebookAuth.appAcessToken;
-      request(url, function(err, response, body) {
-            console.log(body);
-	    var response = JSON.parse(body);
-            if (!('error' in response.data)){
-		    if(configAuth.facebookAuth.clientID === response.data.app_id && 
-		     token.userID === response.data.user_id)
-		     {
-			request('https://graph.facebook.com/me?fields=name,email&access_token='+token.accessToken, function(err,response,body){
-			       var userData = JSON.parse(body);
-			       userData.token = token.accessToken;
-			       console.log(userData);
-			       User.create(userData,function(err,user){
-				       res.json(user);
-				});
-			});
-
-		     }
-
-		    else
-		       res.json("error");
-	    }
-            else
-               res.json("error");
-      });
+      authHelper.authFacebook(token,function (err,user) {
+        if (err) 
+        {
+          res.json(err);
+        }
+        res.json(user);
+      })
     });
 module.exports = router;
