@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var Organization = require('../models/organization/index');
 
+var passport = require('passport');
+
+router.use(passport.authenticate('bearer', { session: false }));
+
 router.route('/organizations')
     .get(function(req, res) {
         Organization.all(function(err, data) {

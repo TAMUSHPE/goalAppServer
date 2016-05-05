@@ -52,7 +52,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/mongo_express', mongo_express(mongo_express_config));
 
 app.use('/', routes);
-app.use('/api', images);
 app.use('/api',organizations);
 app.use('/api',goals);
 require('./config/passport')(passport);
