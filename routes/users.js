@@ -15,7 +15,7 @@ router.route('/login')
     //if so then retrieves user email and id and stores token,email,id
     .post(function(req,res){
       var token = JSON.parse(req.body.user);
-      authHelper.authFacebook(token,function (err,user) {
+      authHelper.facebookLogin(token,function (err,user) {
         if (err) 
         {
           res.json(err);
