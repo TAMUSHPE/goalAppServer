@@ -82,5 +82,27 @@ module.exports = {
           cb(null, user);
         });
 	},
+	addOrg: function(orgId, userId, admin, cb){
+		module.exports.get(userId,function(err,user){
+			if(err) {
+			cb(err);
+			}
+			if(admin) 
+			{
+				user.admin.push(orgId);
+			}
+			else 
+			{
+				user.member.push(orgId);
+			}
 
+			user.save(function(err,user){
+		        	if(err){
+				cb(err);
+				}
+				cb(null,user);
+	
+			});
+		});
+	}
 } 

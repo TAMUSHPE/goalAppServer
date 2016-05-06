@@ -14,6 +14,16 @@ var User = new Schema({
         id: String,
         token: String
     },
+    admin: [{
+    	type: mongoose.Schema.Types.ObjectId,
+        ref: 'Organization',
+	default: []
+    }],
+    member: [{
+    	type: mongoose.Schema.Types.ObjectId,
+        ref: 'Organization',
+	default: []
+    }]
 });
 
 module.exports = mongoose.model('User', User);
