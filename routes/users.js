@@ -35,4 +35,11 @@ router.route('/addOrg')
 		res.json(user);
 	});
      });
+router.route('/me')
+    .get(passport.authenticate('bearer', { session: false }),function(req,res){
+	User.getUser(req.user.id,"admin.goals member.goals",function(err,user){
+		res.json(user);
+	});
+
+     });
 module.exports = router;

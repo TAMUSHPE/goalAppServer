@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var User = new Schema({
 	name: { type: String, required: true},
 	email: { type: String, required: true, index: { unique: true }},
@@ -25,5 +26,5 @@ var User = new Schema({
 	default: []
     }]
 });
-
+User.plugin(deepPopulate);
 module.exports = mongoose.model('User', User);

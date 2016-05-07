@@ -74,8 +74,8 @@ module.exports = {
         });
 	},
 	//retrieves one user by id
-	getUsers: function (id,type, cb) {
-		User.findOne({username: id}).populate(type).exec(function(err, user) {
+	getUser: function (id,type, cb) {
+		User.findOne({_id: id}).deepPopulate(type).exec(function(err, user) {
             if(err) {
                 return cb(err);
             }
@@ -104,5 +104,6 @@ module.exports = {
 	
 			});
 		});
-	}
+	},
+	
 } 

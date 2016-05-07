@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var Organization = new Schema({
     name: String,
     desc: String,
@@ -31,4 +32,5 @@ Organization.pre('save', function(next){
 
 	next();
 });
+Organization.plugin(deepPopulate);
 module.exports = mongoose.model('Organization', Organization);

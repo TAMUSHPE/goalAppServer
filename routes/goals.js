@@ -13,6 +13,7 @@ router.route('/goals')
         });
     })
     .post(function(req, res) {
+	req.body.creator = req.user._id;
         Goal.create(req, function(err, newGoal) {
             if(err) {
                 return res.send(500, err);
