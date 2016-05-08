@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Organization = require('../models/organization/index');
-
+var User = require('./../models/users/index');
 var passport = require('passport');
 
 router.use(passport.authenticate('bearer', { session: false }));
@@ -21,7 +21,11 @@ router.route('/organizations')
             if(err) {
                 return res.send(500, err);
             }
+	    req.user.admin.push(newOrganization._id);
+	    req.user.save(function(err,user){
             return res.json(newOrganization);
+	   });
+
         });
     });
 router.route('/organizations/:id')
