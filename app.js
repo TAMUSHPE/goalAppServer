@@ -17,6 +17,7 @@ var flash = require('express-flash');
 var configAuth = require('./config/auth');
 var mongo_express = require('mongo-express/lib/middleware');
 var mongo_express_config = require('./config/mongo_express_config');
+var cors = require('cors');
 var app = express();
 // load the auth variables
 // view engine setup
@@ -27,6 +28,7 @@ app.set('view engine', 'hbs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //to be able use PUT and DELETE  in forms
