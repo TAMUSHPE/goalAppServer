@@ -16,6 +16,7 @@ router.route('/organizations')
         });
     })
     .post(function(req, res) {
+	req.body.admins = [{user: req.user._id, role: "creator"}]
         Organization.create(req, function(err, newOrganization) {
             if(err) {
                 return res.send(500, err);
