@@ -4,7 +4,7 @@ var Goal = new Schema({
     name: String,
     desc: String,
     completed: {type:Boolean, required:true,default: false},
-    assigned: String,
+    role: String,
     creator: { 
 		type: mongoose.Schema.Types.ObjectId, 
 		ref: 'User'},

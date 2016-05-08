@@ -1,6 +1,6 @@
 var Goal = require('./goal');
 var Helper = require('../../lib/incomingFilterData');
-var fields = ["name","desc","completed","assigned","creator"];
+var fields = ["name","desc","completed","assigned","creator","role"];
 module.exports = {
 	create: function (req, cb) {
 	    var newGoal = new Goal();
